@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+  <!--From https://codepen.io/frytyler/pen/EGdtg-->
+  <head>
+    <meta charset="UTF-8" />
+    <title>ML API</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Pacifico"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Arimo"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Hind:300"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+  </head>
+
+  <body>
+    <div class="login">
+      <h1>California House Price Prediction</h1>
+      <!-- Main Input For Receiving Query to our ML -->
+      <form
+        action="{{ url_for('predict')}}"
+        method="post"
+      >
+        <div class="inputs">
+          <input
+            type="text"
+            name="area"
+            placeholder="area"
+            required="required"
+          />
+          <input
+            type="text"
+            name="bedrooms"
+            placeholder="bedrooms"
+            required="required"
+          />
+          <input
+            type="text"
+            name="bathrooms"
+            placeholder="bathrooms"
+            required="required"
+          />
+          <input
+            type="text"
+            name="stories"
+            placeholder="stories"
+            required="required"
+          />
+          <input
+            type="text"
+            name="parking"
+            placeholder="parking"
+            required="required"
+          />
+        </div>
+
+        <div class="inputs">
+          <label>Main Road:</label>
+          <select name="mainroad" id="mainroad" required="required" style="flex: 2;">
+            <option value="yes" selected>Yes</option>
+            <option value="no">No</option>
+          </select>
+
+          <label for="guestroom" style="flex: 1;">Guest Room:</label>
+          <select name="guestroom" id="guestroom" required="required" style="flex: 2;">
+            <option value="yes" selected>Yes</option>
+            <option value="no">No</option>
+          </select>
+
+          <label for="basement" style="flex: 1;">Basement:</label>
+          <select name="basement" id="basement" required="required" style="flex: 2;">
+            <option value="yes" selected>Yes</option>
+            <option value="no">No</option>
+          </select>
+
+          <label for="airconditioning" style="flex: 1;">Air Conditioning:</label>
+          <select name="airconditioning" id="airconditioning" required="required" style="flex: 2;">
+            <option value="yes" selected>Yes</option>
+            <option value="no">No</option>
+          </select>
+
+          <label for="prefarea" style="flex: 1;">Prefarea:</label>
+          <select name="prefarea" id="prefarea" required="required" style="flex: 2;">
+            <option value="yes" selected>Yes</option>
+            <option value="no">No</option>
+          </select>
+
+          <label>Furnishing Status:</label>
+          <select name="furnishingstatus" id="furnishingstatus" required="required" style="flex: 2;">
+            <option value="furnished" selected>Furnished</option>
+            <option value="semi furnished">Semi Furnished</option>
+            <option value="unfurnished">Unfurnished</option>
+          </select>
+        </div>
+
+        <button
+          type="submit"
+          class="btn btn-primary btn-block btn-large"
+          style="margin-top: 20px;"
+        >
+          Predict
+        </button>
+      </form>
+
+      <br /><br />
+      {{ prediction_text }}
+    </div>
+  </body>
+</html>
+
